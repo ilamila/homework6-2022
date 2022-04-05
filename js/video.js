@@ -15,6 +15,12 @@ document.querySelector("#play").addEventListener("click", function() {
 	document.querySelector("#volume").innerHTML = video.volume * 100 + "%";
 });
 
+document.querySelector("#slider").addEventListener("click", function() {
+	console.log(this.value);
+	video.volume = this.value / 100;
+	document.querySelector("#volume").innerHTML = this.value + "%";
+});
+
 document.querySelector("#pause").addEventListener("click", function() {
 	console.log("Pause Video");
 	video.pause()
@@ -32,6 +38,23 @@ document.querySelector("#faster").addEventListener("click", function() {
 	console.log(video.playbackRate)
 });
 
+document.querySelector("#mute").addEventListener("click", function() {
+	console.log("Mute Video");
+
+	if(video.muted){
+		video.muted = false;
+		document.querySelector("#mute").innerHTML = "Mute";
+	} else {
+		video.muted = true;
+		document.querySelector("#mute").innerHTML = "Unmute";
+	}
+});
+
+document.querySelector("#vintage").addEventListener("click", function() {
+	console.log("Old School");
+	video.vintage()
+});
+
 document.querySelector("#skip").addEventListener("click", function() {
 	console.log("Skip Ahead");
 if (video.currentTime < (video.duration -15)){
@@ -44,23 +67,16 @@ else{
 	video.currentTime = 0;
 	video.play();
 	console.log("new time" + video.current.Time);
-
-
 }
 });
 
+document.querySelector("#vintage").addEventListener("click", function() {
+	document.querySelector("video").classList.add("oldSchool");
+	console.log(video.classList);
+});
 
+document.querySelector("#orig").addEventListener("click", function() {
+	document.querySelector("video").classList.remove("oldSchool");
+	console.log(videp.classList);
+});
 
-//review this part
-
-
-var slider = document.getElementById("myRange");
-var output = document.getElementById("demo");
-output.innerHTML = slider.value; // Display the default slider value
-
-// Update the current slider value (each time you drag the slider handle)
-slider.oninput = function() {
-	console.log(this.value)
-  output.innerHTML = this.value;
-
-}
